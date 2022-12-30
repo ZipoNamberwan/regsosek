@@ -156,4 +156,11 @@
                     } else {
                         $('#sls').append('<option value=\" ' + element.id + ' \">' + '[' +
                             element.code + '] ' + element.name + '</option>');
-                  
+                    }
+                });
+            }
+        });
+    }
+</script>
+
+@endsection
