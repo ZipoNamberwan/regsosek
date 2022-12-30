@@ -78,6 +78,23 @@
                                 </div>
                                 @enderror
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="table-responsive py-4">
+                                        <table class="table" id="datatable-id" width="100%">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nama Pengentri</th>
+                                                    <th>Jumlah Dokumen Yang Dientri</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                             <button class="btn btn-primary mt-3" id="sbmtbtn" type="submit">Submit</button>
                         </form>
                     </div>
@@ -108,7 +125,7 @@
             loadSls('0');
         });
         $('#sls').on('change', function() {
-            loadSls('0');
+            checkSls();
         });
     });
 
@@ -158,6 +175,18 @@
                             element.code + '] ' + element.name + '</option>');
                     }
                 });
+            }
+        });
+    }
+
+    function checkSls() {
+
+        $.ajax({
+            type: 'GET',
+            url: '/check/sls/' + id,
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log(response)
             }
         });
     }
