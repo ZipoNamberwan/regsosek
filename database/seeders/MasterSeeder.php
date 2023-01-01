@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Status;
+use App\Models\StatusDoc;
 use App\Models\Subdistrict;
+use App\Models\User;
 use App\Models\Village;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class MasterSeeder extends Seeder
 {
@@ -15,6 +19,51 @@ class MasterSeeder extends Seeder
      */
     public function run()
     {
+        Status::create([
+            'name' => 'Belum Entri'
+        ]);
+        Status::create([
+            'name' => 'Sedang Entri'
+        ]);
+        Status::create([
+            'name' => 'Selesai Entri'
+        ]);
+
+        StatusDoc::create([
+            'name' => 'Clean'
+        ]);
+        StatusDoc::create([
+            'name' => 'Warning'
+        ]);
+        StatusDoc::create([
+            'name' => 'Error'
+        ]);
+
+
+        Role::create(['name' => 'admin', 'guard_name' => 'web']);
+        Role::create(['name' => 'user', 'guard_name' => 'web']);
+
+        $superuser = User::create([
+            "name" => 'Administrator',
+            "email" => "admin@bps.go.id",
+            "password" => bcrypt('123456')
+        ]);
+        $superuser->assignRole('admin');
+
+        $user1 = User::create([
+            "name" => 'User 1',
+            "email" => "user1@bps.go.id",
+            "password" => bcrypt('123456')
+        ]);
+        $user1->assignRole('user');
+
+        $user2 = User::create([
+            "name" => 'User 2',
+            "email" => "user2@bps.go.id",
+            "password" => bcrypt('123456')
+        ]);
+        $user2->assignRole('user');
+
         $sukapura = Subdistrict::create([
             'code' => '010',
             'name' => 'Sukapura'

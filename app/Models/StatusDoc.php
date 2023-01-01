@@ -5,15 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Village extends Model
+class StatusDoc extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'village';
+    protected $table = 'status_doc';
     public $timestamps = false;
-
-    public function subdistrictdetail()
-    {
-        return $this->belongsTo(Subdistrict::class, 'subdistrict_id');
-    }
 }

@@ -11,4 +11,23 @@ class Sls extends Model
     protected $guarded = [];
     protected $table = 'sls';
     public $timestamps = false;
+
+    public function villagedetail()
+    {
+        return $this->belongsTo(Village::class, 'village_id');
+    }
+
+    public function subdistrictdetail()
+    {
+        return $this->villagedetail->subdistrictdetail();
+    }
+    public function fullcode()
+    {
+        return "3513" . $this->subdistrictdetail->code . $this->villagedetail->code . $this->code;
+    }
+
+    public function fullname()
+    {
+        return $this->subdistrictdetail->name . ", " . $this->villagedetail->name . ", " . $this->name;
+    }
 }

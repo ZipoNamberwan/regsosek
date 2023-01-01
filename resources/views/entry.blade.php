@@ -2,6 +2,11 @@
 
 @section('stylesheet')
 <link rel="stylesheet" href="/assets/vendor/select2/dist/css/select2.min.css">
+<link rel="stylesheet" href="/assets/vendor/datatables2/datatables.min.css" />
+<link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/fontawesome.min.css" />
+<link rel="stylesheet" href="/assets/css/container.css">
+<link rel="stylesheet" href="/assets/css/text.css">
+
 @endsection
 
 @section('container')
@@ -13,7 +18,8 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-bell"></i></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tambah Entri K</li>
+                            <li class="breadcrumb-item"><a href="/">Daftar Entrian K</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Tambah Entrian K</li>
                         </ol>
                     </nav>
                 </div>
@@ -34,7 +40,7 @@
                     </div>
                     <!-- Card body -->
                     <div class="card-body">
-                        <form id="formupdate" autocomplete="off" method="post" action="/IB21" class="needs-validation" enctype="multipart/form-data" novalidate>
+                        <form id="formupdate" autocomplete="off" method="post" action="/entry" class="needs-validation" enctype="multipart/form-data" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -47,36 +53,49 @@
                                         </option>
                                         @endforeach
                                     </select>
+                                    @error('subdistrict')
+                                    <div class="text-valid mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @error('subdistrict')
-                                <div class="text-valid">
-                                    {{ $message }}
-                                </div>
-                                @enderror
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mt-3">
                                     <label class="form-control-label">Desa <span class="text-danger">*</span></label>
                                     <select id="village" name="village" class="form-control" data-toggle="select" name="village">
                                     </select>
+                                    @error('village')
+                                    <div class="text-valid mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @error('village')
-                                <div class="text-valid">
-                                    {{ $message }}
-                                </div>
-                                @enderror
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mt-3">
                                     <label class="form-control-label">SLS <span class="text-danger">*</span></label>
                                     <select id="sls" name="sls" class="form-control" data-toggle="select" name="sls">
                                     </select>
+                                    @error('sls')
+                                    <div class="text-valid mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @error('sls')
-                                <div class="text-valid">
-                                    {{ $message }}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mt-3">
+                                    <div>
+                                        <label class="form-control-label" for="exampleDatepicker">Tanggal Mulai Entri <span class="text-danger">*</span></label>
+                                        <input name="begin" class="form-control @error('begin') is-invalid @enderror" placeholder="Select date" type="date" value="{{ @old('begin') }}">
+                                        @error('begin')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                @enderror
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -106,15 +125,38 @@
 @endsection
 
 @section('optionaljs')
-
-<script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/vendor/js-cookie/js.cookie.js"></script>
-<script src="/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-<script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-
+<script src="/assets/vendor/datatables2/datatables.min.js"></script>
+<script src="/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/vendor/sweetalert2/dist/sweetalert2.js"></script>
 <script src="/assets/vendor/select2/dist/js/select2.min.js"></script>
-<script src="/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+<script>
+    var table = $('#datatable-id').DataTable({
+        "responsive": true,
+        "fixedColumns": true,
+        "fixedHeader": true,
+        "order": [],
+        "columns": [{
+                "responsivePriority": 3,
+                "width": "5%",
+            }, {
+                "responsivePriority": 1,
+                "width": "12%",
+            },
+            {
+                "responsivePriority": 2,
+                "width": "7%",
+                "orderable": false
+            }
+        ],
+        "language": {
+            'paginate': {
+                'previous': '<i class="fas fa-angle-left"></i>',
+                'next': '<i class="fas fa-angle-right"></i>'
+            }
+        }
+    });
+</script>
 
 <script>
     $(document).ready(function() {
@@ -125,7 +167,7 @@
             loadSls('0');
         });
         $('#sls').on('change', function() {
-            checkSls();
+            // checkSls();
         });
     });
 

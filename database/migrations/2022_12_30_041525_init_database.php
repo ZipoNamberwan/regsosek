@@ -37,13 +37,21 @@ class InitDatabase extends Migration
             $table->string('name');
         });
 
+        Schema::create('status_doc', function (Blueprint $table) {
+            $table->id()->autoincrement();
+            $table->string('name');
+        });
+
         Schema::create('entry_k', function (Blueprint $table) {
             $table->id()->autoincrement();
             $table->foreignId('sls_id')->constrained('sls');
-            $table->integer('total_entry');
+            $table->integer('total_entry')->nullable();
             $table->date('begin');
-            $table->date('finish');
+            $table->date('finish')->nullable();
             $table->foreignId('status_id')->constrained('status');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('status_doc_id')->nullable()->constrained('status_doc');
+            $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
