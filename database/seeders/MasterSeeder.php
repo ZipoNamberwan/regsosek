@@ -45,21 +45,21 @@ class MasterSeeder extends Seeder
 
         $superuser = User::create([
             "name" => 'Administrator',
-            "email" => "admin@bps.go.id",
+            "email" => "admin",
             "password" => bcrypt('123456')
         ]);
         $superuser->assignRole('admin');
 
         $user1 = User::create([
             "name" => 'User 1',
-            "email" => "user1@bps.go.id",
+            "email" => "user1",
             "password" => bcrypt('123456')
         ]);
         $user1->assignRole('user');
 
         $user2 = User::create([
             "name" => 'User 2',
-            "email" => "user2@bps.go.id",
+            "email" => "user2",
             "password" => bcrypt('123456')
         ]);
         $user2->assignRole('user');
