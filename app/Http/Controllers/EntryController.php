@@ -268,4 +268,11 @@ class EntryController extends Controller
             "data" => $entriesArray
         ]);
     }
+
+    public function checkSls($id)
+    {
+        $entries = Sls::find($id)->entriesK()->get();
+        $hasEntriedBefore = count(Sls::find($id)->entriesK()->where(['user_id' => Auth::user()->id])->get()) > 0 ? true : false;
+        return json_encode(["hasEntriedBefore" => $hasEntriedBefore, "data" => $entries]);
+    }
 }

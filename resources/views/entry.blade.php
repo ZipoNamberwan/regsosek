@@ -97,9 +97,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="table-responsive py-4">
+                            <div class="row" id="data" style="display: none;">
+                                <div class="col mt-3">
+                                    <label class="form-control-label" for="exampleDatepicker"><i class="fas fa-exclamation-triangle"></i> SLS ini pernah dientri sebelumnya. Berikut petugas yang pernah mengentri SLS ini: </label>
+                                    <div class="table-responsive mt-2">
                                         <table class="table" id="datatable-id" width="100%">
                                             <thead class="thead-light">
                                                 <tr>
@@ -114,7 +115,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary mt-3" id="sbmtbtn" type="submit">Submit</button>
+                            <div class="row" id="hasEntriedBefore" style="display: none;">
+                                <div class="col mt-4">
+                                    <p><span clas="text-danger"><i class="fas fa-exclamation-triangle text-warning"></i> Kamu sudah pernah entri SLS ini. Coba cek <a href="/">di sini</a></span></p>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-3" id="submit" type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -167,7 +173,7 @@
             loadSls('0');
         });
         $('#sls').on('change', function() {
-            // checkSls();
+            checkSls();
         });
     });
 
@@ -210,10 +216,10 @@
                 $('#sls').append(`<option value="0" disabled selected>Pilih SLS</option>`);
                 response.forEach(element => {
                     if (selectedsls == String(element.id)) {
-                        $('#sls').append('<option value=\" ' + element.id + ' \" selected>' +
+                        $('#sls').append('<option value=\"' + element.id + '\" selected>' +
                             '[' + element.code + ']' + element.name + '</option>');
                     } else {
-                        $('#sls').append('<option value=\" ' + element.id + ' \">' + '[' +
+                        $('#sls').append('<option value=\"' + element.id + '\">' + '[' +
                             element.code + '] ' + element.name + '</option>');
                     }
                 });
@@ -222,13 +228,27 @@
     }
 
     function checkSls() {
-
+        var e = document.getElementById("sls");
+        var id = e.options[e.selectedIndex].value;
         $.ajax({
             type: 'GET',
             url: '/check/sls/' + id,
             success: function(response) {
                 var response = JSON.parse(response);
-                console.log(response)
+                console.log(response.hasEntriedBefore)
+                if (response.hasEntriedBefore == true) {
+                    document.getElementById('hasEntriedBefore').style.display = 'block'
+                    document.getElementById('submit').disabled = true
+                    document.getElementById('data').style.display = 'none'
+                } else {
+                    document.getElementById('hasEntriedBefore').style.display = 'none'
+                    document.getElementById('submit').disabled = false
+                    if (response.data.length == 0) {
+                        document.getElementById('data').style.display = 'none'
+                    } else {
+                        document.getElementById('data').style.display = 'block'
+                    }
+                }
             }
         });
     }

@@ -30,4 +30,9 @@ class Sls extends Model
     {
         return $this->subdistrictdetail->name . ", " . $this->villagedetail->name . ", " . $this->name;
     }
+
+    public function entriesK()
+    {
+        return $this->hasMany(EntryK::class, 'sls_id');
+    }
 }
