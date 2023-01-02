@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Utilities;
 use App\Models\EntryK;
 use App\Models\Sls;
 use App\Models\StatusDoc;
@@ -272,7 +273,28 @@ class EntryController extends Controller
     public function checkSls($id)
     {
         $entries = Sls::find($id)->entriesK()->get();
+        $entriesArray = array();
+        foreach ($entries as $entry) {
+            $entryData = array();
+            $entryData['user_name'] = $entry->userdetail->name;
+            $entryData['total_entry'] = $entry->total_entry ?? "-";
+            $entryData['status'] = $entry->statusdetail->name;
+            $entryData['status_id'] = $entry->statusdetail->id;
+            $entriesArray[] = $entryData;
+        }
         $hasEntriedBefore = count(Sls::find($id)->entriesK()->where(['user_id' => Auth::user()->id])->get()) > 0 ? true : false;
-        return json_encode(["hasEntriedBefore" => $hasEntriedBefore, "data" => $entries]);
+        return json_encode(["hasEntriedBefore" => $hasEntriedBefore, "data" => $entriesArray]);
+    }
+
+    public function checkIsEntrying()
+    {
+        $entries = EntryK::where(['user_id' => Auth::user()->id])->where(['status_id' => 2])->get();
+        $isEntrying = count($entries) > 0 ? true : false;
+        $id = count($entries) == 1 ? $entries[0]->id : null;
+        $fullnameArray = [];
+        foreach ($entries as $entry) {
+            $fullnameArray[] = "[" . $entry->slsdetail->fullcode() . "] " . $entry->slsdetail->fullname();
+        }
+        return json_encode(['canEntry' => !$isEntrying, 'message' => Utilities::getSentenceFromArray($fullnameArray, '; '), 'id' => $id]);
     }
 }

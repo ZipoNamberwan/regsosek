@@ -97,16 +97,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" id="data" style="display: none;">
+                            <div class="row" id="data">
                                 <div class="col mt-3">
                                     <label class="form-control-label" for="exampleDatepicker"><i class="fas fa-exclamation-triangle"></i> SLS ini pernah dientri sebelumnya. Berikut petugas yang pernah mengentri SLS ini: </label>
                                     <div class="table-responsive mt-2">
                                         <table class="table" id="datatable-id" width="100%">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th>#</th>
                                                     <th>Nama Pengentri</th>
                                                     <th>Jumlah Dokumen Yang Dientri</th>
+                                                    <th>Status Entri</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -138,22 +138,29 @@
 
 <script>
     var table = $('#datatable-id').DataTable({
-        "responsive": true,
-        "fixedColumns": true,
-        "fixedHeader": true,
+        // "responsive": true,
+        // "fixedColumns": true,
+        // "fixedHeader": true,
+        "scrollX": true,
         "order": [],
+        "searching": false,
+        "aLengthMenu": [
+            [-1],
+            ["All"]
+        ],
+        "iDisplayLength": -1,
         "columns": [{
-                "responsivePriority": 3,
-                "width": "5%",
-            }, {
                 "responsivePriority": 1,
                 "width": "12%",
             },
             {
                 "responsivePriority": 2,
                 "width": "7%",
-                "orderable": false
-            }
+            },
+            {
+                "responsivePriority": 2,
+                "width": "7%",
+            },
         ],
         "language": {
             'paginate': {
@@ -162,6 +169,7 @@
             }
         }
     });
+    document.getElementById('data').style.display = 'none'
 </script>
 
 <script>
@@ -235,7 +243,6 @@
             url: '/check/sls/' + id,
             success: function(response) {
                 var response = JSON.parse(response);
-                console.log(response.hasEntriedBefore)
                 if (response.hasEntriedBefore == true) {
                     document.getElementById('hasEntriedBefore').style.display = 'block'
                     document.getElementById('submit').disabled = true
@@ -246,7 +253,23 @@
                     if (response.data.length == 0) {
                         document.getElementById('data').style.display = 'none'
                     } else {
+                        table.rows().remove().draw()
                         document.getElementById('data').style.display = 'block'
+                        for (var i = 0; i < response.data.length; i++) {
+                            let type = ""
+                            let icon = ""
+                            if (response.data[i].status_id == 2) {
+                                type = "warning"
+                                icon = "<i class=\"fas fa-exclamation-triangle text-warning\"></i>"
+                            } else if (response.data[i].status_id == 3) {
+                                type = "success"
+                            } else {
+                                type = "secondary"
+                                icon = "<i class=\"fas fa-exclamation-triangle\"></i>"
+                            }
+                            let status = "<div class=\"d-flex align-items-center\">" + icon + "<h3><span class=\"badge badge-" + type + "\">" + response.data[i].status + "</span></h3></div>"
+                            table.row.add([response.data[i].user_name, response.data[i].total_entry, status]).draw(false);
+                        }
                     }
                 }
             }

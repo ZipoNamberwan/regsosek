@@ -39,10 +39,9 @@ class MasterSeeder extends Seeder
             'name' => 'Error'
         ]);
 
-
         Role::create(['name' => 'admin', 'guard_name' => 'web']);
         Role::create(['name' => 'user', 'guard_name' => 'web']);
- 
+
         $superuser = User::create([
             "name" => 'Administrator',
             "email" => "admin",
@@ -63,6 +62,13 @@ class MasterSeeder extends Seeder
             "password" => bcrypt('123456')
         ]);
         $user2->assignRole('user');
+
+        $user3 = User::create([
+            "name" => 'User 3',
+            "email" => "user3",
+            "password" => bcrypt('123456')
+        ]);
+        $user3->assignRole('user');
 
         $sukapura = Subdistrict::create([
             'code' => '010',

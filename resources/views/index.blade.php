@@ -67,10 +67,14 @@
                             <h3 class="card-title mb-2">Daftar Entrian Dokumen K</h3>
                         </div>
                         <div class="col-md-3 text-right">
-                            <a href="{{url('/entry/create')}}" class="btn btn-primary btn-round btn-icon mb-2" data-toggle="tooltip" data-original-title="Tambah SLS">
+                            <!-- <a href="{{url('/entry/create')}}" class="btn btn-primary btn-round btn-icon mb-2" data-toggle="tooltip" data-original-title="Tambah SLS">
                                 <span class="btn-inner--icon"><i class="fas fa-plus-circle"></i></span>
                                 <span class="btn-inner--text">Tambah Entrian K</span>
-                            </a>
+                            </a> -->
+                            <button onclick="onAdd()" class="btn btn-icon btn-primary" type="button">
+                                <span class="btn-inner--icon"><i class="fas fa-plus-circle"></i></span>
+                                <span class="btn-inner--text">Tambah Entrian K</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -280,6 +284,52 @@
     });
 </script>
 
+<script>
+    function onAdd() {
+        document.getElementById('loading-background').style.display = 'block'
+        $.ajax({
+            type: 'GET',
+            url: '/check/isentry',
+            success: function(response) {
+                var response = JSON.parse(response);
+                // console.log(response)
+                if (response.canEntry == true) {
+                    window.location = "/entry/create";
+                } else {
+                    let text = 'Masih ada SLS yang berstatus <b>SEDANG ENTRI</b>. Selesaikan dulu SLS tersebut dengan menekan tombol <i class="fas fa-check"></i>. <br>Berikut SLS yang berstatus <b>SEDANG ENTRI</b>: ' + response.message
+                    if (response.id != null) {
+                        text = text.concat("<br> Apakah mau menyelesaikan SLS tersebut?")
+                    }
+                    let prop = {
+                        title: 'Tidak Bisa Menambah Entrian',
+                        html: text,
+                        icon: 'warning',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                    }
+                    if (response.id != null) {
+                        prop.confirmButtonText = 'Selesaikan Entri'
+                        prop.cancelButtonText = 'Cancel'
+                        prop.showCancelButton = true
+                        prop.showConfirmButton = true
+                    } else {
+                        prop.cancelButtonText = 'OK'
+                        prop.showCancelButton = true
+                        prop.showConfirmButton = false
+                    }
+                    Swal.fire(
+                        prop
+                    ).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/entry/" + response.id + "/finish"
+                        }
+                    })
+                }
+                document.getElementById('loading-background').style.display = 'none'
+            }
+        });
+    }
+</script>
 <script>
     function deletesls($id, $name) {
         event.preventDefault();
