@@ -31,7 +31,8 @@ Route::group(['middleware' => ['role:user', 'auth']], function () {
     Route::get('/check/sls/{id}', [App\Http\Controllers\EntryController::class, 'checkSls']);
     Route::get('/check/isentry', [App\Http\Controllers\EntryController::class, 'checkIsEntrying']);
 
-    Route::get('/absensi', [App\Http\Controllers\AttendanceController::class, 'index']);
+    Route::get('/attendance', [App\Http\Controllers\AttendanceController::class, 'index']);
+    Route::post('/attendance', [App\Http\Controllers\AttendanceController::class, 'markAttendance']);
+    Route::get('/attendance/time', [App\Http\Controllers\AttendanceController::class, 'checkTime']);
     Route::get('/info', [App\Http\Controllers\InformationController::class, 'index']);
-
 });

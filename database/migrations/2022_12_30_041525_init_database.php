@@ -42,6 +42,11 @@ class InitDatabase extends Migration
             $table->string('name');
         });
 
+        Schema::create('status_attendance', function (Blueprint $table) {
+            $table->id()->autoincrement();
+            $table->string('name');
+        });
+
         Schema::create('entry_k', function (Blueprint $table) {
             $table->id()->autoincrement();
             $table->foreignId('sls_id')->constrained('sls');
@@ -54,6 +59,16 @@ class InitDatabase extends Migration
             $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::create('attendance', function (Blueprint $table) {
+            $table->id()->autoincrement();
+            $table->foreignId('user_id')->constrained('users');
+            $table->date('date');
+            $table->dateTime('in')->nullable();
+            $table->dateTime('out')->nullable();
+            $table->foreignId('status_attendance_id')->nullable()->constrained('status_attendance');
+            $table->text('note')->nullable();
         });
     }
 

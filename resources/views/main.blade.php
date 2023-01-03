@@ -64,7 +64,7 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/absensi">
+                            <a class="nav-link" href="/attendance">
                                 <i class="ni ni-active-40 text-success"></i>
                                 <span class="nav-link-text">Absensi</span>
                             </a>

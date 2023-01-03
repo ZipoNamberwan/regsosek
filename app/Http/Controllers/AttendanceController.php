@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -13,7 +18,24 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return view('attendance/index');
+        $begin = new DateTime('2023-01-01');
+        $now = new DateTime(date('Y-m-d H:i:s') . ' +7 hours');
+
+        $attendanceToday = Attendance::where(['user_id' => Auth::user()->id])->where(['date' => $now->format('Y-m-d')])->first();
+        $in = $attendanceToday->in != null ? (new DateTime($attendanceToday->in))->format('H:i') : null;
+        $out = $attendanceToday->out != null ? (new DateTime($attendanceToday->out))->format('H:i') : null;
+
+        $interval = DateInterval::createFromDateString('1 day');
+        $period = new DatePeriod($begin, $interval, $now);
+
+        $dataArray = array();
+        foreach ($period as $dt) {
+            $row = array();
+            $row['date'] = $dt->format("Y-m-d H:i:s");
+            $dataArray[] = $row;
+        }
+
+        return view('attendance/index', ['in' => $in, 'out' => $out]);
     }
 
     /**
@@ -80,5 +102,23 @@ class AttendanceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkTime()
+    {
+        $now = new DateTime(date('Y-m-d H:i:s') . ' +7 hours');
+        $time = $now->format('H:i');
+        $dateTime = $now->format('Y-m-d H:i:s');
+
+        return json_encode(['time' => $time, 'datetime' => $dateTime]);
+    }
+
+    public function markAttendance(Request $request)
+    {
+        $dateTime = new DateTime($request->datetime);
+        $date = $dateTime->format(('Y-m-d'));
+        if ((int)$dateTime->format('H') < 5) {
+            $date = (new DateTime($request->datetime . ' -12 hours'))->format('Y-m-d');
+        }
     }
 }

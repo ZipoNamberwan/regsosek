@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Status;
+use App\Models\StatusAttendance;
 use App\Models\StatusDoc;
 use App\Models\Subdistrict;
 use App\Models\User;
@@ -19,6 +20,16 @@ class MasterSeeder extends Seeder
      */
     public function run()
     {
+        StatusAttendance::create([
+            'name' => 'Ijin'
+        ]);
+        StatusAttendance::create([
+            'name' => 'Sakit'
+        ]);
+        StatusAttendance::create([
+            'name' => 'Hari Libur'
+        ]);
+
         Status::create([
             'name' => 'Belum Entri'
         ]);

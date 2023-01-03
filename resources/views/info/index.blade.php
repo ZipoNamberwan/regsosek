@@ -57,7 +57,7 @@
                             <h3 class="card-title mb-2">Information Center</h3>
                         </div>
                         <!-- <div class="col-md-3 text-right">
-                            <a href="{{url('/absensi/mark')}}" class="btn btn-primary btn-round btn-icon mb-2" data-toggle="tooltip" data-original-title="Tambah SLS">
+                            <a href="{{url('/attendance/mark')}}" class="btn btn-primary btn-round btn-icon mb-2" data-toggle="tooltip" data-original-title="Tambah SLS">
                                 <span class="btn-inner--icon"><i class="fas fa-plus-circle"></i></span>
                                 <span class="btn-inner--text">Rekam Absensi</span>
                             </a>

@@ -326,7 +326,7 @@
                     })
                 }
                 document.getElementById('loading-background').style.display = 'none'
-            }
+            },
         });
     }
 </script>

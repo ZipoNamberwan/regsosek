@@ -60,7 +60,8 @@
                 <div class="header-body text-center mb-6">
                     <div class="row justify-content-center">
                         <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                            <h1 class="text-white">Backend New Rakit Komputer</h1>
+                        <h2 class="text-white">Aplikasi Rekap Entri Regsosek</h2>
+                        <h2 class="text-white">BPS Kabupaten Probolinggo</h2>
                         </div>
                     </div>
                 </div>

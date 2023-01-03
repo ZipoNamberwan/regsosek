@@ -237,6 +237,7 @@
 
     function checkSls() {
         var e = document.getElementById("sls");
+        document.getElementById('submit').disabled = true
         var id = e.options[e.selectedIndex].value;
         $.ajax({
             type: 'GET',
@@ -272,6 +273,9 @@
                         }
                     }
                 }
+            },
+            error: function(request, status, error) {
+                document.getElementById('submit').disabled = true
             }
         });
     }
