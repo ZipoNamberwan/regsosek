@@ -34,5 +34,6 @@ Route::group(['middleware' => ['role:user', 'auth']], function () {
     Route::get('/attendance', [App\Http\Controllers\AttendanceController::class, 'index']);
     Route::post('/attendance', [App\Http\Controllers\AttendanceController::class, 'markAttendance']);
     Route::get('/attendance/time', [App\Http\Controllers\AttendanceController::class, 'checkTime']);
+    Route::get('/attendance/data', [App\Http\Controllers\AttendanceController::class, 'attendanceData']);
     Route::get('/info', [App\Http\Controllers\InformationController::class, 'index']);
 });

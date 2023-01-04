@@ -18,7 +18,6 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $begin = new DateTime('2023-01-01');
         $now = new DateTime(date('Y-m-d H:i:s') . ' +7 hours');
 
         $attendanceToday = Attendance::where(['user_id' => Auth::user()->id])->where(['date' => $now->format('Y-m-d')])->first();
@@ -27,16 +26,6 @@ class AttendanceController extends Controller
         if ($attendanceToday != null) {
             $in = $attendanceToday->in != null ? (new DateTime($attendanceToday->in))->format('H:i') : null;
             $out = $attendanceToday->out != null ? (new DateTime($attendanceToday->out))->format('H:i') : null;
-        }
-
-        $interval = DateInterval::createFromDateString('1 day');
-        $period = new DatePeriod($begin, $interval, $now);
-
-        $dataArray = array();
-        foreach ($period as $dt) {
-            $row = array();
-            $row['date'] = $dt->format("Y-m-d H:i:s");
-            $dataArray[] = $row;
         }
 
         return view('attendance/index', ['in' => $in, 'out' => $out]);
@@ -128,7 +117,6 @@ class AttendanceController extends Controller
 
         $attendanceToday = Attendance::where(['date' => $date])->where(['user_id' => Auth::user()->id])->first();
         if ($attendanceToday == null) {
-            // dd($attendanceToday);
             Attendance::create([
                 'user_id' => Auth::user()->id,
                 'date' => $date,
@@ -143,5 +131,50 @@ class AttendanceController extends Controller
         }
 
         return redirect('/attendance');
+    }
+
+    public function attendanceData(Request $request)
+    {
+        $first = new DateTime('2023-01-01');
+        $last = new DateTime(date('Y-m-d H:i:s') . ' +7 hours');
+        $interval = DateInterval::createFromDateString('1 day');
+        $period = new DatePeriod($first, $interval, $last);
+
+        $dataArray = array();
+        $i = 0;
+        foreach ($period as $dt) {
+            $row = array();
+            $attendance = Attendance::where(['date' => $dt->format("Y-m-d")])->where(['user_id' => Auth::user()->id])->first();
+            $row['date'] = $dt->format("Y-m-d");
+            $row['in'] = '-';
+            $row['out'] = '-';
+            $row['note'] = '-';
+            if ($attendance != null) {
+                $row['in'] = (new DateTime($attendance->in))->format('H:i');
+                $row['out'] = (new DateTime($attendance->out))->format('H:i');
+            }
+            $dataArray[] = $row;
+            $i++;
+        }
+
+        if ($request->order != null) {
+            if ($request->order[0]['dir'] == 'desc') {
+                $dataArray = array_reverse($dataArray);
+            }
+        }
+
+        if ($request->length != -1) {
+            $dataArray = array_slice($dataArray, $request->start, $request->length);
+        }
+
+        $recordsTotal = $i;
+        $recordsFiltered = $i;
+
+        return json_encode([
+            "draw" => $request->draw,
+            "recordsTotal" => $recordsTotal,
+            "recordsFiltered" => $recordsFiltered,
+            "data" => $dataArray
+        ]);
     }
 }

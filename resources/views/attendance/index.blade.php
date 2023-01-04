@@ -132,6 +132,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="table-responsive py-4">
+                    <table class="table" id="datatable-id" width="100%">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Datang</th>
+                                <th>Pulang</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -140,6 +155,68 @@
 
 @section('optionaljs')
 <script src="/assets/vendor/sweetalert2/dist/sweetalert2.js"></script>
+<script src="/assets/vendor/datatables2/datatables.min.js"></script>
+<script src="/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/vendor/momentjs/moment-with-locales.js"></script>
+
+<script>
+    var table = $('#datatable-id').DataTable({
+        // "responsive": true,
+        // "fixedColumns": true,
+        // "fixedHeader": true,
+        "scrollX": true,
+        "order": [],
+        "aLengthMenu": [
+            [10, 30, -1],
+            [10, 30, "All"]
+        ],
+        "iDisplayLength": 10,
+        "serverSide": true,
+        "processing": true,
+        "ajax": {
+            "url": '/attendance/data',
+            "type": 'GET'
+        },
+        "columns": [{
+                "responsivePriority": 2,
+                "width": "5%",
+                "data": "date",
+                "orderable": true,
+                "render": function(data, type, row) {
+                    var unixTimestamp = new Date(data).getTime() / 1000 - (new Date).getTimezoneOffset() * 60;
+                    if (type === 'display' || type === 'filter') {
+                        return moment.unix(unixTimestamp).locale('id').format('LL');
+                    }
+                    return unixTimestamp;
+                }
+            },
+            {
+                "responsivePriority": 2,
+                "width": "5%",
+                "data": "in",
+                "orderable": false,
+            },
+            {
+                "responsivePriority": 2,
+                "width": "5%",
+                "data": "out",
+                "orderable": false,
+            },
+            {
+                "responsivePriority": 2,
+                "width": "5%",
+                "data": "note",
+                "orderable": false,
+            }
+        ],
+        "language": {
+            'paginate': {
+                'previous': '<i class="fas fa-angle-left"></i>',
+                'next': '<i class="fas fa-angle-right"></i>'
+            }
+        }
+    });
+</script>
 
 <script>
     function attendanceFormClick(type) {
