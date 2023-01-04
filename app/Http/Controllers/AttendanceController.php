@@ -20,6 +20,10 @@ class AttendanceController extends Controller
     {
         $now = new DateTime(date('Y-m-d H:i:s') . ' +7 hours');
 
+        if ((int)$now->format('H') < 5) {
+            $now = new DateTime(date('Y-m-d H:i:s') . ' +7 hours -1 day');
+        }
+
         $attendanceToday = Attendance::where(['user_id' => Auth::user()->id])->where(['date' => $now->format('Y-m-d')])->first();
         $in = null;
         $out = null;
@@ -27,6 +31,8 @@ class AttendanceController extends Controller
             $in = $attendanceToday->in != null ? (new DateTime($attendanceToday->in))->format('H:i') : null;
             $out = $attendanceToday->out != null ? (new DateTime($attendanceToday->out))->format('H:i') : null;
         }
+
+        // dd($attendanceToday);
 
         return view('attendance/index', ['in' => $in, 'out' => $out]);
     }
@@ -135,7 +141,7 @@ class AttendanceController extends Controller
 
     public function attendanceData(Request $request)
     {
-        $first = new DateTime('2023-01-01');
+        $first = new DateTime('2023-01-05');
         $last = new DateTime(date('Y-m-d H:i:s') . ' +7 hours');
         $interval = DateInterval::createFromDateString('1 day');
         $period = new DatePeriod($first, $interval, $last);
@@ -150,8 +156,8 @@ class AttendanceController extends Controller
             $row['out'] = '-';
             $row['note'] = '-';
             if ($attendance != null) {
-                $row['in'] = (new DateTime($attendance->in))->format('H:i');
-                $row['out'] = (new DateTime($attendance->out))->format('H:i');
+                $row['in'] = $attendance->in != null ? (new DateTime($attendance->in))->format('H:i') : '-';
+                $row['out'] = $attendance->out != null ?  (new DateTime($attendance->out))->format('H:i') : '-';
             }
             $dataArray[] = $row;
             $i++;

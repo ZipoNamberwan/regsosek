@@ -81,6 +81,769 @@ class MasterSeeder extends Seeder
         ]);
         $user3->assignRole('user');
 
+        $superuser = User::create([
+            'name' => "Abd.Holiq",
+            'email' => "Abdholiq",
+            'password' => bcrypt("Abdholiq")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Agung Muhammad Zahid",
+            'email' => "Zahidagung",
+            'password' => bcrypt("Zahidagung")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ahmad Nur Bustomi",
+            'email' => "ANBustomi",
+            'password' => bcrypt("ANBustomi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Annisa fitriana",
+            'email' => "4nnisa03",
+            'password' => bcrypt("4nnisa03")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Arji",
+            'email' => "arji01",
+            'password' => bcrypt("arji01")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Bima Yudha Dwi Putra",
+            'email' => "Bimayudhadwiputra",
+            'password' => bcrypt("Bimayudhadwiputra")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Dahlia Cucu putra pahlawan",
+            'email' => "Dahliacucu29",
+            'password' => bcrypt("Dahliacucu29")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "DANDY PROBOWIJAYANTO",
+            'email' => "dandyez",
+            'password' => bcrypt("dandyez")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Diana Noviarika",
+            'email' => "Diana Noviarika",
+            'password' => bcrypt("Diana Noviarika")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "diana puji rahayu",
+            'email' => "diana puji",
+            'password' => bcrypt("diana puji")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "FERDI DWI PRASETYO",
+            'email' => "FERDIDWIPRASETYO",
+            'password' => bcrypt("FERDIDWIPRASETYO")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Foni miliana sandra",
+            'email' => "Fonimiliana",
+            'password' => bcrypt("Fonimiliana")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Imam wahyudi",
+            'email' => "Masyudi76",
+            'password' => bcrypt("Masyudi76")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "IRFAN AMRULLAH",
+            'email' => "irfanamr96",
+            'password' => bcrypt("irfanamr96")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "M. Lukas",
+            'email' => "Muklasalaska",
+            'password' => bcrypt("Muklasalaska")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "MAIMUNA",
+            'email' => "maidanil",
+            'password' => bcrypt("maidanil")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "MUHAMMAD ANDI FATCHUROZI",
+            'email' => "Andifatchurozi21",
+            'password' => bcrypt("Andifatchurozi21")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhammad Maulana Ishaq",
+            'email' => "Ishaqmaulana_21",
+            'password' => bcrypt("Ishaqmaulana_21")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nurhudah Kamarullah",
+            'email' => "Nurhudah_Kamarullah",
+            'password' => bcrypt("Nurhudah_Kamarullah")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Puput kus endang",
+            'email' => "Puputke",
+            'password' => bcrypt("Puputke")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Saifudin",
+            'email' => "Saifudin BPS",
+            'password' => bcrypt("Saifudin BPS")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Syaiful hadi",
+            'email' => "syaifulh1080",
+            'password' => bcrypt("syaifulh1080")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Wulan Ramadhani",
+            'email' => "wulanramadhani0402",
+            'password' => bcrypt("wulanramadhani0402")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Abbas Al Faruqy",
+            'email' => "Abbas Al Faruqy",
+            'password' => bcrypt("Abbas Al Faruqy")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "ACHMAD AGUS FAISOL",
+            'email' => "Achmad Agus Faisol",
+            'password' => bcrypt("Achmad Agus Faisol")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "ACHMAD IMRON MASDUKI",
+            'email' => "achmadimronmasduki",
+            'password' => bcrypt("achmadimronmasduki")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Achmad Ridlo Ilahi",
+            'email' => "Achmad ridlo ilahi",
+            'password' => bcrypt("Achmad ridlo ilahi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Adam Malik",
+            'email' => "adam1707malik",
+            'password' => bcrypt("adam1707malik")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Adhaji Ilham Muhamad",
+            'email' => "ADHAJI",
+            'password' => bcrypt("ADHAJI")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Alvin Kurnia Hamdana",
+            'email' => "Alvin_hamdana",
+            'password' => bcrypt("Alvin_hamdana")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "alvira devi karina hakim",
+            'email' => "Alvira29",
+            'password' => bcrypt("Alvira29")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Amara Deviana Chanigo",
+            'email' => "amaradevi",
+            'password' => bcrypt("amaradevi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Amirul hariyanto",
+            'email' => "amirulhariyanto",
+            'password' => bcrypt("amirulhariyanto")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Andi Cahya Santoso",
+            'email' => "BuronanMertua",
+            'password' => bcrypt("BuronanMertua")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Annasya Mia Darmayani",
+            'email' => "annasya mia",
+            'password' => bcrypt("annasya mia")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "ARDIAN NOVALDHI",
+            'email' => "Ardian1311",
+            'password' => bcrypt("Ardian1311")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ari Mulyanto",
+            'email' => "arimulya69374",
+            'password' => bcrypt("arimulya69374")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ayu Nurma Yunita",
+            'email' => "ayunurma30",
+            'password' => bcrypt("ayunurma30")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Bambang Mudiono",
+            'email' => "bambang",
+            'password' => bcrypt("bambang")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "DANI SUKRI HANAPI",
+            'email' => "Danisukri",
+            'password' => bcrypt("Danisukri")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Daniel Salahudin",
+            'email' => "Daniel10",
+            'password' => bcrypt("Daniel10")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Deviana Novita Sari",
+            'email' => "Deviana Novita Sari",
+            'password' => bcrypt("Deviana Novita Sari")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Dewi Amira",
+            'email' => "dewiamira",
+            'password' => bcrypt("dewiamira")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Dewi Qomara Dona",
+            'email' => "donnadewi",
+            'password' => bcrypt("donnadewi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Dia Islamiyah",
+            'email' => "Diaislamiyah",
+            'password' => bcrypt("Diaislamiyah")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "DIAZ RIZKYA PUTRA",
+            'email' => "Diazrizkyaputra",
+            'password' => bcrypt("Diazrizkyaputra")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "DIMAS JORGHI PRADANA",
+            'email' => "Dimas2106",
+            'password' => bcrypt("Dimas2106")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Dita Ayu Lutfiana",
+            'email' => "ditayuu",
+            'password' => bcrypt("ditayuu")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "DONNY PRATAMA YUNIOR",
+            'email' => "donnypratama4438",
+            'password' => bcrypt("donnypratama4438")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Dwi Rizqi Anjirfaghnawi",
+            'email' => "Drizanjir_",
+            'password' => bcrypt("Drizanjir_")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "EKA YUNIAR LESTARI",
+            'email' => "ekayuniar17",
+            'password' => bcrypt("ekayuniar17")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Enis Wulandari",
+            'email' => "Enis_Wulandari",
+            'password' => bcrypt("Enis_Wulandari")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Fahrur riyazatur rofiqoh",
+            'email' => "Fahrur19",
+            'password' => bcrypt("Fahrur19")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "FAJRIYATUL MUTAMMIMAH",
+            'email' => "Fajriyamth",
+            'password' => bcrypt("Fajriyamth")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Faradila Sahara",
+            'email' => "Faradilasahara",
+            'password' => bcrypt("Faradilasahara")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Farah Jihan Khairun Nisa'",
+            'email' => "farah921",
+            'password' => bcrypt("farah921")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "FATICHATURROHMAH ISLAMIYAH",
+            'email' => "Faticha",
+            'password' => bcrypt("Faticha")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Febby Dwi Kandina Putri",
+            'email' => "Febbykandi",
+            'password' => bcrypt("Febbykandi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Fina Rohmatul Ummah",
+            'email' => "FinaRohmatulUmmah",
+            'password' => bcrypt("FinaRohmatulUmmah")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Firman Ika Yusmalah Sugiati",
+            'email' => "firmanika",
+            'password' => bcrypt("firmanika")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "FIRMANSYAH ALDILLAH",
+            'email' => "Aldillah",
+            'password' => bcrypt("Aldillah")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Frisilia Eka Fitriani",
+            'email' => "Frisiliaeka",
+            'password' => bcrypt("Frisiliaeka")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ginanjar Samodro Widodo",
+            'email' => "anjarsan",
+            'password' => bcrypt("anjarsan")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "IBNU HIDAYAT",
+            'email' => "Hidayat_12",
+            'password' => bcrypt("Hidayat_12")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "IFTAH RIZKIE VIDIAN",
+            'email' => "IFTAH_RIZKIE_VIDIAN",
+            'password' => bcrypt("IFTAH_RIZKIE_VIDIAN")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ika Ardining Putri",
+            'email' => "ikaaputri",
+            'password' => bcrypt("ikaaputri")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "IKA SEPTIANA PUTRI",
+            'email' => "ikasept",
+            'password' => bcrypt("ikasept")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ilham Aldin Hidayat",
+            'email' => "Ilham290",
+            'password' => bcrypt("Ilham290")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "ILHAM KURNIAWAN",
+            'email' => "ilham1982",
+            'password' => bcrypt("ilham1982")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Inayatul Wulandari",
+            'email' => "Ina_wulan06",
+            'password' => bcrypt("Ina_wulan06")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Indri Widya Kurniawati",
+            'email' => "IndriWidya",
+            'password' => bcrypt("IndriWidya")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Irvan Rachmad Ananto",
+            'email' => "IrvanRhmd",
+            'password' => bcrypt("IrvanRhmd")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ivan Budi Tantra",
+            'email' => "ivan",
+            'password' => bcrypt("ivan")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Khairorrosi",
+            'email' => "Khairorrosi",
+            'password' => bcrypt("Khairorrosi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Khusnul Arifin",
+            'email' => "ksnlarifin",
+            'password' => bcrypt("ksnlarifin")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Lesdi Harto Irawan",
+            'email' => "Lesdi",
+            'password' => bcrypt("Lesdi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "LISA SHERLY CHOLIQA",
+            'email' => "Lisa",
+            'password' => bcrypt("Lisa")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "M ZAKI IMAMUL MURTADLO",
+            'email' => "zakimuhammad",
+            'password' => bcrypt("zakimuhammad")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "M. CHOIRUL AMIN AL HAKIKI",
+            'email' => "aminalhakiki",
+            'password' => bcrypt("aminalhakiki")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "M. Kamil",
+            'email' => "Kamil21",
+            'password' => bcrypt("Kamil21")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "maulana ishak wibawa mukti",
+            'email' => "maulana_ishak",
+            'password' => bcrypt("maulana_ishak")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "MAULANA JIBRIL AL ISA",
+            'email' => "mjai",
+            'password' => bcrypt("mjai")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Mochammad Iqbal Dewa Dharma",
+            'email' => "IqbalDewa",
+            'password' => bcrypt("IqbalDewa")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "MOH. FIKRI DERMAWAN",
+            'email' => "Fsan29",
+            'password' => bcrypt("Fsan29")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Moh. Nanang Qosyim",
+            'email' => "Nanangdamai123",
+            'password' => bcrypt("Nanangdamai123")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Mohammad sholehuddin",
+            'email' => "085235511211",
+            'password' => bcrypt("085235511211")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Mufidatun Nisa'",
+            'email' => "Mnisa",
+            'password' => bcrypt("Mnisa")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muh. Hasan Digo Firnando",
+            'email' => "Digo",
+            'password' => bcrypt("Digo")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhamad Wahid Setiawan",
+            'email' => "wahidsetiawan",
+            'password' => bcrypt("wahidsetiawan")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhammad Bagoes Ariefani",
+            'email' => "Bagus_aja",
+            'password' => bcrypt("Bagus_aja")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhammad Cahyo Saputro",
+            'email' => "Muhammadcahyo",
+            'password' => bcrypt("Muhammadcahyo")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhammad Hafid",
+            'email' => "hafidrdw_11",
+            'password' => bcrypt("hafidrdw_11")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhammad Rido Hartono",
+            'email' => "ridohartono98",
+            'password' => bcrypt("ridohartono98")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhammad Sholehudin",
+            'email' => "leonfaza",
+            'password' => bcrypt("leonfaza")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Muhammad Syaiful Rizal",
+            'email' => "091294iil",
+            'password' => bcrypt("091294iil")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nabila Izza Syakira",
+            'email' => "NabilaSyakira",
+            'password' => bcrypt("NabilaSyakira")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "nabila nur faizah",
+            'email' => "Nabilafaizah",
+            'password' => bcrypt("Nabilafaizah")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nadia Fahira Salsabila",
+            'email' => "nadiafahiras",
+            'password' => bcrypt("nadiafahiras")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nadia lutfiana dewi rahmawati",
+            'email' => "nadiadewi",
+            'password' => bcrypt("nadiadewi")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "NADYA MAURENA WAFIYANTI",
+            'email' => "nadyamaurena",
+            'password' => bcrypt("nadyamaurena")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Neva Yolandasari",
+            'email' => "Nevays99",
+            'password' => bcrypt("Nevays99")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nining Ayu Widiastuti",
+            'email' => "niningayuw",
+            'password' => bcrypt("niningayuw")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nur ananda cahyati",
+            'email' => "Nandacahyaa",
+            'password' => bcrypt("Nandacahyaa")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nurhasanah",
+            'email' => "nurhasanah",
+            'password' => bcrypt("nurhasanah")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "NURRAMADHAN ARWINDA",
+            'email' => "dhani.09",
+            'password' => bcrypt("dhani.09")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Nurul Azizah",
+            'email' => "azizahuyung",
+            'password' => bcrypt("azizahuyung")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Odelia Eka Prameswari",
+            'email' => "odeliaeka",
+            'password' => bcrypt("odeliaeka")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Pitra Surya Pradipta",
+            'email' => "pitraaasuryaaa",
+            'password' => bcrypt("pitraaasuryaaa")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Rafri Bayu Raharjo",
+            'email' => "Rafri31",
+            'password' => bcrypt("Rafri31")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Rahmawati",
+            'email' => "Rahmawati2830",
+            'password' => bcrypt("Rahmawati2830")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "REGI RESTA AFYUDA",
+            'email' => "Regiresta22",
+            'password' => bcrypt("Regiresta22")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Rendy Perdana Arizona",
+            'email' => "Rendy_Perdana_A",
+            'password' => bcrypt("Rendy_Perdana_A")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Rias Kusumawati",
+            'email' => "rias88",
+            'password' => bcrypt("rias88")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "RIKE MAYA HANDAYANI",
+            'email' => "RIKE_MAYA_HANDAYANI",
+            'password' => bcrypt("RIKE_MAYA_HANDAYANI")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Rodiatul munawaroh",
+            'email' => "Rmunawaroh17",
+            'password' => bcrypt("Rmunawaroh17")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "S.Teguh Ekarzaen",
+            'email' => "ekarzaen",
+            'password' => bcrypt("ekarzaen")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "SALMAN AL FARISI",
+            'email' => "alfarisi9914",
+            'password' => bcrypt("alfarisi9914")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Siska Mudrika",
+            'email' => "Siskamudrika",
+            'password' => bcrypt("Siskamudrika")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "sohebatul mukarromah",
+            'email' => "soheb26",
+            'password' => bcrypt("soheb26")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Syamsudin",
+            'email' => "Udin666",
+            'password' => bcrypt("Udin666")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Taufik Hidayat",
+            'email' => "Opikopik",
+            'password' => bcrypt("Opikopik")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Urifa",
+            'email' => "Rivaanggraeni96",
+            'password' => bcrypt("Rivaanggraeni96")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Wiwik hulaifah",
+            'email' => "Wiwik.hulaifah",
+            'password' => bcrypt("Wiwik.hulaifah")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Yossy Adin Medyanti",
+            'email' => "yossyadin0605",
+            'password' => bcrypt("yossyadin0605")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Zacky Azriel Bakti",
+            'email' => "Zacky123",
+            'password' => bcrypt("Zacky123")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Zainul millah",
+            'email' => "Zainul0304",
+            'password' => bcrypt("Zainul0304")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Zulfa Camilah Islamiyah",
+            'email' => "zulfacamilah",
+            'password' => bcrypt("zulfacamilah")
+        ]);
+        $superuser->assignRole('user');
+
         $sukapura = Subdistrict::create([
             'code' => '010',
             'name' => 'Sukapura'
