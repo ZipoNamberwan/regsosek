@@ -22,8 +22,12 @@ class AttendanceController extends Controller
         $now = new DateTime(date('Y-m-d H:i:s') . ' +7 hours');
 
         $attendanceToday = Attendance::where(['user_id' => Auth::user()->id])->where(['date' => $now->format('Y-m-d')])->first();
-        $in = $attendanceToday->in != null ? (new DateTime($attendanceToday->in))->format('H:i') : null;
-        $out = $attendanceToday->out != null ? (new DateTime($attendanceToday->out))->format('H:i') : null;
+        $in = null;
+        $out = null;
+        if ($attendanceToday != null) {
+            $in = $attendanceToday->in != null ? (new DateTime($attendanceToday->in))->format('H:i') : null;
+            $out = $attendanceToday->out != null ? (new DateTime($attendanceToday->out))->format('H:i') : null;
+        }
 
         $interval = DateInterval::createFromDateString('1 day');
         $period = new DatePeriod($begin, $interval, $now);
@@ -116,9 +120,28 @@ class AttendanceController extends Controller
     public function markAttendance(Request $request)
     {
         $dateTime = new DateTime($request->datetime);
+        $time = $dateTime->format('Y-m-d H:i:s');
         $date = $dateTime->format(('Y-m-d'));
         if ((int)$dateTime->format('H') < 5) {
             $date = (new DateTime($request->datetime . ' -12 hours'))->format('Y-m-d');
         }
+
+        $attendanceToday = Attendance::where(['date' => $date])->where(['user_id' => Auth::user()->id])->first();
+        if ($attendanceToday == null) {
+            // dd($attendanceToday);
+            Attendance::create([
+                'user_id' => Auth::user()->id,
+                'date' => $date,
+                'in' => ($request->type == 'in' ? $time : null),
+                'out' => ($request->type == 'out' ? $time : null),
+            ]);
+        } else {
+            $attendanceToday->update([
+                'in' => ($request->type == 'in' ? $time : $attendanceToday->in),
+                'out' => ($request->type == 'out' ? $time : $attendanceToday->out),
+            ]);
+        }
+
+        return redirect('/attendance');
     }
 }

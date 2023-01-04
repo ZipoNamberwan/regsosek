@@ -143,6 +143,7 @@
 
 <script>
     function attendanceFormClick(type) {
+        console.log(type)
         event.preventDefault();
         document.getElementById('loading-background').style.display = 'block'
         $.ajax({
