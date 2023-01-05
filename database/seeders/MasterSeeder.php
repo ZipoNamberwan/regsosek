@@ -593,8 +593,8 @@ class MasterSeeder extends Seeder
         $superuser->assignRole('user');
         $superuser = User::create([
             'name' => "Mohammad sholehuddin",
-            'email' => "085235511211",
-            'password' => bcrypt("085235511211")
+            'email' => "LEEHOE",
+            'password' => bcrypt("LEEHOE")
         ]);
         $superuser->assignRole('user');
         $superuser = User::create([
@@ -841,6 +841,38 @@ class MasterSeeder extends Seeder
             'name' => "Zulfa Camilah Islamiyah",
             'email' => "zulfacamilah",
             'password' => bcrypt("zulfacamilah")
+        ]);
+
+        //tambahan
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Eva Novita",
+            'email' => "EVANO",
+            'password' => bcrypt("EVANO")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Miftahul Ilmih",
+            'email' => "MIFTAHULILMIH",
+            'password' => bcrypt("MIFTAHULILMIH")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Mohammad Yuda Irwansah",
+            'email' => "DWI732318",
+            'password' => bcrypt("DWI732318")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Riza Dwi Safitri",
+            'email' => "RIZA",
+            'password' => bcrypt("RIZA")
+        ]);
+        $superuser->assignRole('user');
+        $superuser = User::create([
+            'name' => "Ulfi Jahusafat Amanah",
+            'email' => "ULFI",
+            'password' => bcrypt("ULFI")
         ]);
         $superuser->assignRole('user');
 

@@ -57,7 +57,7 @@ class EntryController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect('/')->with('success-create', 'Data Entrian telah direkap!');;
+        return redirect('/')->with('success-create', 'Data Entrian telah direkap!');
     }
 
     /**
@@ -141,7 +141,7 @@ class EntryController extends Controller
         }
 
         EntryK::destroy($id);
-        return redirect('/')->with('success-delete', 'Data Entrian telah dihapus!');;
+        return redirect('/')->with('success-delete', 'Data Entrian telah dihapus!');
     }
 
     public function recap($id)

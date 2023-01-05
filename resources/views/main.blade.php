@@ -54,6 +54,7 @@
             <div class="navbar-inner">
                 <!-- Collapse -->
                 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                    @role('user')
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="/">
@@ -78,6 +79,16 @@
                             </a>
                         </li>
                     </ul>
+                    @else
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/mitra">
+                                <i class="ni ni-app text-info"></i>
+                                <span class="nav-link-text">Data Mitra</span>
+                            </a>
+                        </li>
+                    </ul>
+                    @endrole
                 </div>
             </div>
         </div>
@@ -123,7 +134,7 @@
                                     <i class="ni ni-zoom-split-in"></i>
                                 </a>
                             </li>
-                            
+
                         </ul>
                         <ul class="navbar-nav align-items-center ml-auto ml-md-0">
                             <li class="nav-item dropdown">

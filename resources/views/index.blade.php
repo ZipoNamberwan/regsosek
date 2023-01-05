@@ -67,11 +67,11 @@
                             <h3 class="card-title mb-2">Daftar Entrian Dokumen K</h3>
                         </div>
                         <div class="col-md-3 text-right">
-                            <!-- <a href="{{url('/entry/create')}}" class="btn btn-primary btn-round btn-icon mb-2" data-toggle="tooltip" data-original-title="Tambah SLS">
-                                <span class="btn-inner--icon"><i class="fas fa-plus-circle"></i></span>
-                                <span class="btn-inner--text">Tambah Entrian K</span>
-                            </a> -->
-                            <button onclick="onAdd()" class="btn btn-icon btn-primary" type="button">
+                            <a href="{{url('/attendance')}}" class="btn btn-primary btn-round btn-icon mb-2" data-toggle="tooltip" data-original-title="Absensi">
+                                <span class="btn-inner--icon"><i class="fas fa-clock"></i></span>
+                                <span class="btn-inner--text">Absensi</span>
+                            </a>
+                            <button onclick="onAdd()" class="btn btn-icon btn-primary mb-2" type="button">
                                 <span class="btn-inner--icon"><i class="fas fa-plus-circle"></i></span>
                                 <span class="btn-inner--text">Tambah Entrian K</span>
                             </button>
