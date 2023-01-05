@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['role:user', 'auth']], function () {
     Route::get('/', [App\Http\Controllers\EntryController::class, 'index']);
+    Route::get('/home', [App\Http\Controllers\EntryController::class, 'index']);
     Route::post('/entry', [App\Http\Controllers\EntryController::class, 'store']);
     Route::post('/entry/{id}/finish', [App\Http\Controllers\EntryController::class, 'finish']);
     Route::post('/entry/{id}/edit', [App\Http\Controllers\EntryController::class, 'update']);
