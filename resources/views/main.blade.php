@@ -87,6 +87,25 @@
                                 <span class="nav-link-text">Data Mitra</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                                <i class="ni ni-app text-orange"></i>
+                                <span class="nav-link-text">Report</span>
+                            </a>
+                            <div class="collapse" id="navbar-examples">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{url('/attendance/list')}}" class="nav-link">Daftar Absensi Hari Ini</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/report/user')}}" class="nav-link">Rekap Entri Dok K Menurut Petugas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/report/sls')}}" class="nav-link">Status Entri Dok K</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                     @endrole
                 </div>

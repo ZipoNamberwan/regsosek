@@ -52,5 +52,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/mitra/{id}/edit', [App\Http\Controllers\MitraController::class, 'edit']);
         Route::put('/mitra/{id}', [App\Http\Controllers\MitraController::class, 'update']);
         Route::delete('/mitra/{id}', [App\Http\Controllers\MitraController::class, 'destroy']);
+
+        Route::get('/attendance/list', [App\Http\Controllers\ReportController::class, 'attendanceList']);
+        Route::get('/attendance/list/data', [App\Http\Controllers\ReportController::class, 'attendanceListData']);
+        Route::get('/report/user', [App\Http\Controllers\ReportController::class, 'reportEntryByUser']);
+        Route::get('/report/sls', [App\Http\Controllers\ReportController::class, 'reportEntry']);
     });
 });
