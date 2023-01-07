@@ -54,8 +54,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/mitra/{id}', [App\Http\Controllers\MitraController::class, 'destroy']);
 
         Route::get('/attendance/list', [App\Http\Controllers\ReportController::class, 'attendanceList']);
-        Route::get('/attendance/list/data', [App\Http\Controllers\ReportController::class, 'attendanceListData']);
+        Route::get('/attendance/list/data/{id?}', [App\Http\Controllers\ReportController::class, 'attendanceListData']);
         Route::get('/report/user', [App\Http\Controllers\ReportController::class, 'reportEntryByUser']);
         Route::get('/report/sls', [App\Http\Controllers\ReportController::class, 'reportEntry']);
+        Route::get('/message/{id}/{type}', [App\Http\Controllers\ReportController::class, 'generateMessage']);
+        Route::get('/attendance/change', [App\Http\Controllers\ReportController::class, 'attendanceEdit']);
+        Route::post('/attendance/change', [App\Http\Controllers\ReportController::class, 'attendanceUpdate']);
     });
 });

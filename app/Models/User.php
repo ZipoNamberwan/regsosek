@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status_shift_id',
     ];
 
     /**
@@ -42,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function shiftdetail()
+    {
+        return $this->belongsTo(Shift::class, 'status_shift_id');
+    }
 }

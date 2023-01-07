@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -26,7 +27,8 @@ class MitraController extends Controller
      */
     public function create()
     {
-        return view('mitra/create');
+        $shifts = Shift::all();
+        return view('mitra/create', ['shifts' => $shifts]);
     }
 
     /**
@@ -40,12 +42,14 @@ class MitraController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'username' => 'required|unique:users,email',
+            'shift' => 'required',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->username,
             'password' => bcrypt($request->username),
+            'status_shift_id' => $request->shift
         ]);
 
         $user->assignRole('user');
@@ -73,7 +77,8 @@ class MitraController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('mitra/edit', ['user' => $user]);
+        $shifts = Shift::all();
+        return view('mitra/edit', ['user' => $user, 'shifts' => $shifts]);
     }
 
     /**
@@ -88,6 +93,7 @@ class MitraController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'username' => 'required',
+            'shift' => 'required'
         ]);
 
         $user = User::find($id);
@@ -95,6 +101,7 @@ class MitraController extends Controller
             'name' => $request->name,
             'email' => $request->username,
             'password' => bcrypt($request->username),
+            'status_shift_id' => $request->shift
         ]);
 
         return redirect('/mitra')->with('success-edit', 'Petugas Pengolahan telah diubah!');
@@ -160,9 +167,9 @@ class MitraController extends Controller
         foreach ($users as $user) {
             $userData = array();
             $userData["name"] = $user->name;
-            $userData["id"] = $user->id;
+             $userData["id"] = $user->id;
             $userData["username"] = $user->email;
-            $userData["shift"] = $user->shift;
+            $userData["shift"] = $user->shiftdetail != null ? $user->shiftdetail->name : '';
             $usersArray[] = $userData;
             $i++;
         }

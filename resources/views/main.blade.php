@@ -84,8 +84,24 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/mitra">
                                 <i class="ni ni-app text-info"></i>
-                                <span class="nav-link-text">Data Mitra</span>
+                                <span class="nav-link-text">Data Petugas</span>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                                <i class="ni ni-active-40 text-blue"></i>
+                                <span class="nav-link-text">Absensi</span>
+                            </a>
+                            <div class="collapse" id="navbar-examples">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{url('/attendance/list')}}" class="nav-link">Daftar Absensi Hari Ini</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/attendance/change')}}" class="nav-link">Ubah Absensi Petugas</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
@@ -94,9 +110,6 @@
                             </a>
                             <div class="collapse" id="navbar-examples">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{url('/attendance/list')}}" class="nav-link">Daftar Absensi Hari Ini</a>
-                                    </li>
                                     <li class="nav-item">
                                         <a href="{{url('/report/user')}}" class="nav-link">Rekap Entri Dok K Menurut Petugas</a>
                                     </li>

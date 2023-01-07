@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\Shift;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+
+use function PHPSTORM_META\type;
 
 class ReportController extends Controller
 {
@@ -24,12 +28,17 @@ class ReportController extends Controller
 
     public function attendanceList()
     {
-        return view('report/attendance-list');
+        $shifts = Shift::all();
+        return view('report/attendance-list', ['shifts' => $shifts]);
     }
 
-    public function attendanceListData(Request $request)
+    public function attendanceListData(Request $request, $id = null)
     {
-        $recordsTotal = User::role('user')->where('id', '!=', 2)->where('id', '!=', 3)->where('id', '!=', 4)->get();
+        $recordsTotal = User::role('user')->where('id', '!=', 2)->where('id', '!=', 3)->where('id', '!=', 4);
+        if ($id != null) {
+            $recordsTotal = $recordsTotal->where(['status_shift_id' => $id]);
+        }
+        $recordsTotal = $recordsTotal->get()->count();
 
         $orderColumn = 'name';
         $orderDir = SORT_DESC;
@@ -49,9 +58,14 @@ class ReportController extends Controller
         }
         $searchkeyword = $request->search['value'];
 
-        $users = User::role('user')->where('id', '!=', 2)->where('id', '!=', 3)->where('id', '!=', 4)->get();
+        $users = User::role('user')->where('id', '!=', 2)->where('id', '!=', 3)->where('id', '!=', 4);
+        if ($id != null) {
+            $users = $users->where(['status_shift_id' => $id]);
+        }
+        $users = $users->get();
+
         $now = date('Y-m-d');
-        $now = '2023-01-05';
+        // $now = '2023-01-05';
 
         $data = array();
         foreach ($users as $user) {
@@ -96,5 +110,63 @@ class ReportController extends Controller
             "recordsFiltered" => $recordsFiltered,
             "data" => $data
         ]);
+    }
+
+    public function generateMessage($idshift, $type)
+    {
+        $shift = Shift::find($idshift);
+        $users = User::role('user')->where('id', '!=', 2)->where('id', '!=', 3)->where('id', '!=', 4)->where(['status_shift_id' => $shift->id])->get();
+
+        $now = date('Y-m-d');
+        // $now = '2023-01-05';
+
+        $data = array();
+        foreach ($users as $user) {
+            $att = Attendance::where(['user_id' => $user->id, 'date' => $now])->first();
+            if ($att == null) {
+                $data[] = $user->name;
+            } else {
+                if ($type == 'in') {
+                    if ($att->in == null) $data[] = $user->name;
+                } else {
+                    if ($att->out == null) $data[] = $user->name;
+                }
+            }
+        }
+
+        return json_encode(['message' => $shift->name . ($type == 'in' ? ' yang belum absen datang hari ini: <br>' : ' yang belum absen pulang hari ini: <br>') . Utilities::getSentenceFromArray($data, '<br>', '<br>')]);
+    }
+
+    public function attendanceEdit()
+    {
+        $users = User::role('user')->where('id', '!=', 2)->where('id', '!=', 3)->where('id', '!=', 4)->get();
+        return view('report/attendance-change', ['users' => $users]);
+    }
+
+    public function attendanceUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'type' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+        ]);
+
+        $att = Attendance::where(['user_id' => $request->name])->where(['date' => $request->date])->first();
+        if ($att != null) {
+            $att->update(
+                [
+                    $request->type => $request->time
+                ]
+            );
+        } else {
+            Attendance::create([
+                'user_id' => $request->name,
+                'date' => $request->date,
+                $request->type => $request->time
+            ]);
+        }
+
+        return redirect('/attendance/list')->with('success-edit', 'Data Absensi Telah Diubah!');
     }
 }

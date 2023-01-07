@@ -63,6 +63,24 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-control-label">Shift <span class="text-danger">*</span></label>
+                                    <select id="shift" name="shift" class="form-control" data-toggle="select" name="shift" required>
+                                        <option value="0" disabled selected> -- Pilih Shift -- </option>
+                                        @foreach ($shifts as $shift)
+                                        <option value="{{ $shift->id }}" {{ old('shift') == $shift->id ? 'selected' : '' }}>
+                                            {{ $shift->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('shift')
+                                    <div class="text-valid mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
                             <button class="btn btn-primary mt-3" id="sbmtbtn" type="submit">Submit</button>
                         </form>
                     </div>
@@ -74,5 +92,6 @@
 @endsection
 
 @section('optionaljs')
+<script src="/assets/vendor/select2/dist/js/select2.min.js"></script>
 
 @endsection
