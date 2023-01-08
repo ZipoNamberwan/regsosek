@@ -76,7 +76,7 @@
                         @method('post')
                         <input type="hidden" value="in" name="type">
                         <input type="hidden" name="datetime">
-                        <button class="btn btn-icon btn-primary btn-sm mt-3" type="submit" @if($in!=null) disabled @endif onclick="attendanceFormClick('in')">
+                        <button class="btn btn-icon btn-primary btn-sm mt-3" type="submit" onclick="attendanceFormClick('in')">
                             <span class="btn-inner--icon"><i class="ni ni-active-40"></i></span>
                             <span class="btn-inner--text">Rekam</span>
                         </button>
@@ -112,7 +112,7 @@
                         @method('post')
                         <input type="hidden" value="out" name="type">
                         <input type="hidden" name="datetime">
-                        <button class="btn btn-icon btn-primary btn-sm mt-3" type="submit" @if($out!=null) disabled @endif onclick="attendanceFormClick('out')">
+                        <button class="btn btn-icon btn-primary btn-sm mt-3" type="submit" onclick="attendanceFormClick('out')">
                             <span class="btn-inner--icon"><i class="ni ni-active-40"></i></span>
                             <span class="btn-inner--text">Rekam</span>
                         </button>

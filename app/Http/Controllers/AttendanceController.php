@@ -157,7 +157,13 @@ class AttendanceController extends Controller
             $row['note'] = '-';
             if ($attendance != null) {
                 $row['in'] = $attendance->in != null ? (new DateTime($attendance->in))->format('H:i') : '-';
-                $row['out'] = $attendance->out != null ?  (new DateTime($attendance->out))->format('H:i') : '-';
+
+                if ($attendance->out != null) {
+                    $format = (new DateTime($attendance->out))->format('Y-m-d') != $dt->format("Y-m-d") ? 'H:i d M' : 'H:i';
+                    $row['out'] = (new DateTime($attendance->out))->format($format);
+                } else {
+                    $row['out'] = '-';
+                }
             }
             $dataArray[] = $row;
             $i++;
