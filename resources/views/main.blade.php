@@ -88,11 +88,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                            <a class="nav-link" href="#navbar1" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar1">
                                 <i class="ni ni-active-40 text-blue"></i>
                                 <span class="nav-link-text">Absensi</span>
                             </a>
-                            <div class="collapse" id="navbar-examples">
+                            <div class="collapse" id="navbar1">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="{{url('/attendance/list')}}" class="nav-link">Daftar Absensi Hari Ini</a>
@@ -104,11 +104,11 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                            <a class="nav-link" href="#navbar2" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar2">
                                 <i class="ni ni-app text-orange"></i>
                                 <span class="nav-link-text">Report</span>
                             </a>
-                            <div class="collapse" id="navbar-examples">
+                            <div class="collapse" id="navbar2">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="{{url('/report/user')}}" class="nav-link">Rekap Entri Dok K Menurut Petugas</a>
