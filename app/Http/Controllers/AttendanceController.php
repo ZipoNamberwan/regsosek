@@ -228,6 +228,45 @@ class AttendanceController extends Controller
         return redirect('/attendance')->with('success-create', 'Ketidakhadiran dibatalkan, Absensi dibuka kembali!');
     }
 
+    public function markManualAttendance(Request $request)
+    {
+        if ($request->datepick == null || $request->timepick == null) {
+            return redirect('/attendance')->with('success-delete', 'Tanggal dan Jam Absen harus diisi!');
+        } else {
+            $time = $request->datepick . ' ' . $request->timepick . ':00';
+            $date = $request->date;
+
+            $attendanceToday = Attendance::where(['date' => $date])->where(['user_id' => Auth::user()->id])->first();
+            if ($attendanceToday == null) {
+                $updateData = [
+                    'user_id' => Auth::user()->id,
+                    'date' => $date,
+                    'in' => ($request->type == 'in' ? $time : null),
+                    'out' => ($request->type == 'out' ? $time : null),
+                ];
+                if ($request->type == 'in') {
+                    $updateData['is_in_manual'] = true;
+                } else {
+                    $updateData['is_out_manual'] = true;
+                }
+                Attendance::create($updateData);
+            } else {
+                $updateData = [
+                    'in' => ($request->type == 'in' ? $time : $attendanceToday->in),
+                    'out' => ($request->type == 'out' ? $time : $attendanceToday->out),
+                ];
+                if ($request->type == 'in') {
+                    $updateData['is_in_manual'] = true;
+                } else {
+                    $updateData['is_out_manual'] = true;
+                }
+                $attendanceToday->update($updateData);
+            }
+
+            return redirect('/attendance')->with('success-create', 'Waktu Absen sudah direkam!');
+        }
+    }
+
     public function attendanceData(Request $request)
     {
         $first = new DateTime('2023-01-05');
@@ -235,7 +274,7 @@ class AttendanceController extends Controller
         $interval = DateInterval::createFromDateString('1 day');
         $period = new DatePeriod($first, $interval, $last);
         $numdate = iterator_count($period);
-        
+
         $dataArray = array();
         $i = 0;
         foreach ($period as $dt) {
@@ -248,8 +287,12 @@ class AttendanceController extends Controller
             $row['note'] = null;
             $row['status_id'] = null;
             $row['status_name'] = null;
+            $row['is_in_manual'] = null;
+            $row['is_out_manual'] = null;
             if ($attendance != null) {
                 $row['in'] = $attendance->in != null ? (new DateTime($attendance->in))->format('H:i') : null;
+                $row['is_in_manual'] = $attendance->is_in_manual;
+                $row['is_out_manual'] = $attendance->is_out_manual;
 
                 if ($attendance->out != null) {
                     $format = (new DateTime($attendance->out))->format('Y-m-d') != $dt->format("Y-m-d") ? 'H:i d M' : 'H:i';
@@ -266,7 +309,8 @@ class AttendanceController extends Controller
                 }
             }
             if ($numdate == $i) {
-                $row['out'] = '-';
+                $row['out'] = $row['out'] ?? '-';
+                $row['in'] = $row['in'] ?? '-';
             }
             $dataArray[] = $row;
         }

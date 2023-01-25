@@ -282,7 +282,7 @@
                         </button>`
                         }
                     }
-                    return data;
+                    return data + (row.is_in_manual == true ? ' **' : '');
                 }
             },
             {
@@ -299,7 +299,7 @@
                         </button>`
                         }
                     }
-                    return data;
+                    return data + (row.is_out_manual == true ? ' **' : '');
                 }
             },
             {
@@ -423,19 +423,28 @@
 
 <script>
     function attendanceManualClick(type, date) {
+        event.preventDefault();
+
         let maxdate = new Date(date);
         maxdate.setDate(maxdate.getDate() + 1);
 
-        event.preventDefault();
         var unixTimestamp = new Date(date).getTime() / 1000 - (new Date).getTimezoneOffset() * 60;
         dateStr = moment.unix(unixTimestamp).locale('id').format('LL');
 
         Swal.fire({
             title: 'Absensi ' + (type == 'in' ? 'Datang' : 'Pulang') + ' Manual Tanggal ' + dateStr,
-            html: `<div class="row"><div class="col mb-2"><input type="date" value="` + date +
-                `" max="` + maxdate.getFullYear() + `-` +
-                String((maxdate.getMonth() + 1)).padStart(2, '0') + `-` + maxdate.getDate() +
-                `" min="` + date + `" class="form-control"></div> <div class="col"><input type="time" class="form-control"></div></div>`,
+            html: `<form id="manualatt" method="post" action="/attendance/manual" class="needs-validation" enctype="multipart/form-data" novalidate>
+                        @csrf
+                        @method('post')
+                        <input name="type" type="hidden" value="` + type + `">
+                        <input name="date" type="hidden" value="` + date + `">
+                        <div class="row">
+         ` + (type == 'out' ? `<div class="col mb-2"><input name="datepick" type="date" value="` + date + `" max="` + maxdate.getFullYear() + `-` + String((maxdate.getMonth() + 1)).padStart(2, '0') + `-` + maxdate.getDate() + `" min="` + date + `" class="form-control">
+            </div> ` : `<input name="datepick" type="hidden" value="` + date + `">`) + ` 
+            <div class="col"><input name="timepick" type="time" class="form-control">
+            </div>
+            </div>
+            </form>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -444,7 +453,7 @@
             cancelButtonText: 'Tidak',
         }).then((result) => {
             if (result.isConfirmed) {
-
+                document.getElementById('manualatt').submit();
             }
         })
     }

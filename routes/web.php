@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/attendance', [App\Http\Controllers\AttendanceController::class, 'index']);
         Route::post('/attendance', [App\Http\Controllers\AttendanceController::class, 'markAttendance']);
+        Route::post('/attendance/manual', [App\Http\Controllers\AttendanceController::class, 'markManualAttendance']);
         Route::post('/attendance/noatt', [App\Http\Controllers\AttendanceController::class, 'markNoAttendance']);
         Route::post('/attendance/noatt/cancel', [App\Http\Controllers\AttendanceController::class, 'cancelNoAttendance']);
         Route::get('/attendance/time', [App\Http\Controllers\AttendanceController::class, 'checkTime']);
