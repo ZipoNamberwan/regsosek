@@ -50,10 +50,13 @@
                                 <span class="btn-inner--icon"><i class="fas fa-comment-alt"></i></span>
                                 <span class="btn-inner--text">Generate Pesan WA</span>
                             </button>
-                            <a href="{{url('/mitra/create')}}" class="btn btn-primary btn-round btn-icon mb-2" data-toggle="tooltip" data-original-title="Download">
-                                <span class="btn-inner--icon"><i class="fas fa-download"></i></span>
-                                <span class="btn-inner--text">Download</span>
-                            </a>
+                            <form method="POST" action="/attendance/download">
+                                @csrf
+                                <button class="btn btn-icon btn-primary mb-2" type="submit">
+                                    <span class="btn-inner--icon"><i class="fas fa-download"></i></span>
+                                    <span class="btn-inner--text">Download</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

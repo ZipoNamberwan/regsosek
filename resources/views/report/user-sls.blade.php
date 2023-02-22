@@ -67,10 +67,13 @@
                             <h3 class="card-title mb-2">Rekap Entri Dokumen K</h3>
                         </div>
                         <div class="col-md-3 text-right">
-                            <button class="btn btn-icon btn-primary mb-2" type="button">
-                                <span class="btn-inner--icon"><i class="fas fa-download"></i></span>
-                                <span class="btn-inner--text">Download</span>
-                            </button>
+                            <form method="POST" action="/report/download">
+                                @csrf
+                                <button class="btn btn-icon btn-primary mb-2" type="submit">
+                                    <span class="btn-inner--icon"><i class="fas fa-download"></i></span>
+                                    <span class="btn-inner--text">Download</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

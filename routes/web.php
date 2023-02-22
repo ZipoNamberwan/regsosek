@@ -63,13 +63,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/message/{id}/{type}', [App\Http\Controllers\ReportController::class, 'generateMessage']);
         Route::get('/attendance/change', [App\Http\Controllers\ReportController::class, 'attendanceEdit']);
         Route::post('/attendance/change', [App\Http\Controllers\ReportController::class, 'attendanceUpdate']);
+        Route::post('/attendance/download', [App\Http\Controllers\ReportController::class, 'attendanceDownload']);
 
         Route::get('/report/user', [App\Http\Controllers\ReportController::class, 'reportUser']);
         Route::get('/report/user/data', [App\Http\Controllers\ReportController::class, 'reportUserData']);
         Route::get('/report/user/{id}', [App\Http\Controllers\ReportController::class, 'viewReport']);
         Route::get('/report/user/data/{id}', [App\Http\Controllers\ReportController::class, 'viewReportData']);
-
         Route::get('/report/sls', [App\Http\Controllers\ReportController::class, 'reportSls']);
         Route::get('/report/sls/data', [App\Http\Controllers\ReportController::class, 'reportSlsData']);
+        Route::post('/report/download', [App\Http\Controllers\ReportController::class, 'downloadReportSls']);
+        
     });
 });
